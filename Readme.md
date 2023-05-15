@@ -4,7 +4,7 @@
 
 
 ## The Project
-CRUD management system on available courses and Students In School
+CRUD management system on available Pathways and Students In School
 
 ## Team
 * **AMETCHI LIAM** [@AMETCHI_LIAM](https://www.linkedin.com/in/liam-ametchi-17474a214/)
