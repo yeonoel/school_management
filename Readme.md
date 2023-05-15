@@ -1,6 +1,6 @@
 # Management of students of a school
 
-![start](https://imgur.com/gallery/5VzWJDQ)
+![start](https://i.imgur.com/C5s7VM9.jpg)
 
 
 ## The Project
