@@ -1,10 +1,13 @@
 import User from "../models/User.js";
 import bcrypt, { hash } from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export default class UserController {
     static signUp = (req, res) => {
         const email = req.body? req.body.email : null;
         const password = req.body? req.body.password : null;
+        const nom = req.body? req.body.nom : null;
+        const prenom = req.body? req.body.prenom : null;
 
         if (!email) {
             res.status(400).json({error: "Missing email"});
@@ -16,17 +19,41 @@ export default class UserController {
             return;
         }
 
-        bcrypt.hash(password, 10)
-            .then(hash => {
-                const user = new User({
-                    email: email,
-                    password: hash
-                });
-                user.save()
-                    .then(() => res.status(201).json({ email: email }))
-                    .catch((error) => res.status(400).json({ error}))
+        if (!nom) {
+            res.status(400).json({ error: "Missing name"});
+            return;
+        }
+
+        if (!prenom) {
+            res.status(400).json({ error: "Missing first name"});
+            return;
+        }
+
+        User.findOne({ email })
+            .then(theuser => {
+                if (theuser) {
+                    return res.status(400).json({ error: "User Already exist"})
+                }
+
+                bcrypt.hash(password, 10)
+                .then(hash => {
+                    const user = new User({
+                        email: email,
+                        nom: nom,
+                        prenom: prenom, 
+                        password: hash
+                    });
+                    user.save()
+                        .then((user) => res.status(201).json({ email, password }))
+                        .catch((error) => res.status(400).json({ error}))
+                })
+                .catch((error) => res.status(500).json({ error }))
+
+
+
             })
-            .catch((error) => res.status(500).json({ error }))
+
+        
     }
 
 
@@ -56,9 +83,14 @@ export default class UserController {
                         }
                         res.status(200).json({
                             userId: user._id,
-                            token: 'TOKEN'
-                        })
+                            token: jwt.sign(
+                                {userId: user._id},
+                                'RANDOM_TOKEN_SECRET',
+                                { expiresIn: '24H'}
+                            )
+                        });
                     })
+                    .catch(error => res.status(500).json({ error }))
             })
     }
 }

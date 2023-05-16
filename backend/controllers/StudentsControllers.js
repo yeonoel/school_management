@@ -4,13 +4,14 @@ import Students from '../models/students.js'
 export default class StudentsControllers {
 
   static createStudents = (req, res) => {
-    if (!nom || !prenom || !niveau || !matricule || !moyenMath || moyenInfo || !ImageUrl) {
-      console.log('fill in all the fields');
-      return
-  }
+      if (!nom || !prenom || !niveau || !matricule || !moyenMath || moyenInfo || !ImageUrl) {
+        console.log('fill in all the fields');
+        return
+      }
+      const { path } = req;
       delete req.body._id;
       const student = new Students({
-          ...req.body
+          ...req.body, pathId: path._id
       });
       student.save()
       .then(() => res.status(201).json({ message: 'student succeffull save !'}))
