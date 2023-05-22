@@ -8,7 +8,7 @@ CRUD management system on available Pathways and Students In School
 
 ## Team
 * **AMETCHI LIAM** [@AMETCHI_LIAM](https://www.linkedin.com/in/liam-ametchi-17474a214/)
-* **Domoa Marlon** [@Domoa_malon](varmoa33@gmail.com)
+* **Domoa Marlon** [@Domoa_malon](https://github.com/MarlonDomoa)
 * **Yeo pevrogui Noel** [@ARNAZAKASH](https://www.linkedin.com/in/pevrogui-noel-yeo-1812491b5/)
 
 ## Technologies
