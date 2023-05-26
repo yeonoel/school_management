@@ -8,14 +8,16 @@ export default class CoursesController {
   static createCourses = (req, res, ) => {
     
     const niveau = req.body? req.body.niveau : null;
-    const specialite = req.body? req.body.specialite : null;
+    const speciality = req.body? req.body.speciality : null;
     const salle = req.body? req.body.salle : null;
+    
+    console.log(req.body)
 
     if (!niveau) {
       res.status(400).json({ error: 'Missing level'});
       return;
     }
-    if (!specialite) {
+    if (!speciality) {
       res.status(400).json({ error: 'Missing epsecialite'});
       return;
     }
@@ -69,6 +71,7 @@ static getOneCourse = (req, res) => {
   
   static deleteOneCourse = (req, res) => {
     const { id } = req.params;
+    console.log(id)
     Courses.deleteOne({ _id: id })
       .then(() => res.status(200).json({ message: 'Object deleted !'}))
       .catch(error => res.status(400).json({ error }));

@@ -1,6 +1,10 @@
-const colors = {
-    primary: "3C7B6E",
-    secondary: "F44965",
-    tertiary: "#444",
-
+export default colors = {
+    lightyellow: '#ffff80',
+    primary1: "#e4e3e1",
+    primary2: "#dba95a", // Jaune
+    secondary1: "#232724", 
+    secondary2: "#e64537",
+    tertiary: "#35aa54",  // vert
 }
+
+// 

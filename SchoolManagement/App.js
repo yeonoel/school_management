@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+//import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import MainNavigator from './routes/DrawerNav'
+
+import {
+  useFonts,
+  InriaSans_300Light,
+  InriaSans_300Light_Italic,
+  InriaSans_400Regular,
+  InriaSans_400Regular_Italic,
+  InriaSans_700Bold,
+  InriaSans_700Bold_Italic,
+} from '@expo-google-fonts/inria-sans';
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Everythings is okay!</Text>
-      <StatusBar backgroundColor='red' style="auto" />
-    </View>
-  );
+  let [fontsLoding] = useFonts({
+    InriaSans_300Light,
+    InriaSans_300Light_Italic,
+    InriaSans_400Regular,
+    InriaSans_400Regular_Italic,
+    InriaSans_700Bold,
+    InriaSans_700Bold_Italic,
+  })
+  if (!fontsLoding) {
+    return <AppLoading />
+  } else {
+    return <MainNavigator />
+  }
+    
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
