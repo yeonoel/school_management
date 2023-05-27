@@ -2,34 +2,36 @@
 import React, { useState } from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Picker } from '@react-native-picker/picker';
 import { Alert } from 'react-native';
 
 
 const EditStudent = ({navigation}) => {
     
+    const [classes, setClasses] = useState(["Prepa1", "Prepa2", "Prepa3", "Eng1", "Eng2", "Eng3"]);
     const [nom, setNom] = useState(navigation.getParam('nom'));
     const [matricule, setMatricule] = useState(navigation.getParam('matricule'));
     const [prenom, setPrenom] = useState(navigation.getParam('prenom'));
-    const [niveau, setNiveau] = useState(navigation.getParam('niveau'));
     const [moyenMath, setMoyenMath] = useState(navigation.getParam('moyenMath'));
     const [moyenInfo, setMoyenInfo] = useState(navigation.getParam('moyenInfo'));
+    const [selectClass, setSelectedClass] = useState('');
 
     const idStudent = navigation.getParam('id');
 
     function capitalizeFirstLetter(name) {
         return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-      }
+    }
 
-      console.log(navigation.getParam('matricule'))
+    console.log(navigation.getParam('matricule'))
 
       function emptyField () {
         console.log('okay');
-        setMatricule('');
-        setMoyenInfo('');
-        setMoyenMath('');
-        setNom('');
-        setPrenom('');
-        setSelectedClass('');
+        
+        setMoyenInfo(navigation.getParam('moyenInfo'));
+        setMoyenMath(navigation.getParam('moyenMath'));
+        setNom(navigation.getParam('nom'));
+        setPrenom(navigation.getParam('prenom'));
+        setMatricule(navigation.getParam('matricule'))
     
     }
     const handleCancel = () => {
@@ -41,7 +43,7 @@ const EditStudent = ({navigation}) => {
             nom: nom,
             matricule: matricule,
             prenom: prenom,
-            niveau: niveau,
+            niveau: selectClass,
             moyenMath: moyenMath,
             moyenInfo: moyenInfo
         };
@@ -98,14 +100,7 @@ const EditStudent = ({navigation}) => {
                         </View>
                         
                         
-                        <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Niveau:  </Text>
-                            <TextInput
-                                style={styles.input}
-                                value={niveau}
-                                onChangeText={text => setNiveau(text)}
-                            />
-                        </View>
+                        
                         <View style={styles.studentsecondItem}>
                             <Text style={styles.studentsecondItemText1}> Nom:   </Text>
                             <TextInput
@@ -122,6 +117,7 @@ const EditStudent = ({navigation}) => {
                                 onChangeText={text => setPrenom(text)}
                             />
                         </View>
+                        
                         <View style={styles.studentsecondItem}>
                             <Text style={styles.studentsecondItemText1}> Moyen Mathematique </Text>
                             <TextInput
@@ -140,27 +136,41 @@ const EditStudent = ({navigation}) => {
                                 onChangeText={text => setMoyenInfo(text)}
                             />
                         </View>
+                        <View>
+                        <Picker
+                            selectedValue={selectClass}
+                            onValueChange={(itemValue, itemIdex) => setSelectedClass(itemValue)}
+                        >
+                            <Picker.Item label="Choisir un niveau" value="" />
+                            {
+                                classes.map((item, index) => (
+                                    <Picker.Item key={index} label={item} value={item} />
+                                ) )
+                            }
+                        </Picker>
+                    </View>
 
                         <View style={styles.group_btn_add_student}>
-                        <TouchableOpacity
-                            style={styles.btn1}
-                            color='#fff'
-                            onPress={handleCancel}
-                        >
-                            <Text
-                            style={styles.btn_text}
-                            > Annuler </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.btn2}
-                            onPress={handleUpdate}
-                        >
-                            <Text
-                                style={styles.btn_text}
-                            > 
-                                Valider 
-                            </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btn2}
+                                onPress={handleUpdate}
+                            >
+                                <Text
+                                    style={styles.btn_text1}
+                                > 
+                                    Valider 
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.btn1}
+                                color='#fff'
+                                onPress={handleCancel}
+                            >
+                                <Text
+                                style={styles.btn_text2}
+                                > Annuler </Text>
+                            </TouchableOpacity>
+                        
                         
                     </View>
                         
@@ -188,7 +198,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 60,
+        height: 55,
         borderWidth: 2,
         borderRadius: 10,
         borderColor: "#ccc",
@@ -213,8 +223,7 @@ const styles = StyleSheet.create({
 
 
     group_btn_add_student: {
-        marginTop: 30,
-        flexDirection: 'row',
+        marginTop: 20,
         justifyContent: 'space-around',
         
         borderRadius: 20,
@@ -223,22 +232,26 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 10,
         height: 40,
-        borderRadius: 50,
-        backgroundColor: '#e64537', // définit la couleur de fond du bouton en vert
-        color: '#fff' ,// définit la couleur du texte en blanc
+        borderRadius: 5,
+        color: 'red' ,// définit la couleur du texte en blanc
         alignItems: 'center'
     },
     btn2: {
         height: 40,
         paddingHorizontal: 30,
         paddingVertical: 10,
-        borderRadius: 50,
+        borderRadius: 5,
         backgroundColor: '#00703C', // 
         color: '#fff' // définit la couleur du texte en blanc
     },
-    btn_text: {
+    btn_text1: {
+        textAlign: 'center',
+        color: '#fff',
+        fontWeight: 'bold'
+    },
+    btn_text2: {
         
-        color: '#fff'
+        color: 'red'
     }
 
 

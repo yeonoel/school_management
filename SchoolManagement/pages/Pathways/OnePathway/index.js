@@ -16,6 +16,7 @@ import {
     OverflowMenu,
   } from 'react-navigation-header-buttons';
 import { Alert } from 'react-native';
+import { style } from 'deprecated-react-native-prop-types/DeprecatedViewPropTypes';
 
 const OnePathway = ({navigation}) => {
     
@@ -25,33 +26,44 @@ const OnePathway = ({navigation}) => {
     <View style={styles.container}>
       <ScrollView>
             <View style={styles.contPathwayItem}>
-                <View style={styles.pathwayItem}>
-                <FontAwesome name="level-up" size={24} color="black" style={{fontSize: 30, paddingHorizontal: 30, height: 80, width: 80, paddingVertical: 20, borderRadius: 50, color: 'red', backgroundColor: '#E9E9E9'}} />
-                <View style={styles.pathwayItemText}>
-                        <Text style={styles.pathwayItemText1}>Niveau</Text>
-                        <Text style={styles.pathwayItemText2}> {navigation.getParam('niveau')}</Text>
-                    </View>
-                </View>
-                <View style={styles.pathwayItem}>
-                <MaterialIcons name="confirmation-number" size={24} color="black" style={{fontSize: 30, paddingHorizontal: 30, height: 80, width: 80, paddingVertical: 30, borderRadius: 50, color: 'red', backgroundColor: '#E9E9E9'}} />
-                <View style={styles.pathwayItemText}>
-                        <Text style={styles.pathwayItemText1}>Salle</Text>
-                        <Text style={styles.pathwayItemText2}> {navigation.getParam('salle')}</Text>
-                    </View>
-                </View>
-                <View style={styles.pathwayItem}>
-                    <MaterialIcons name="perm-data-setting" size={24} color="black" style={{fontSize: 30, paddingHorizontal: 20, height: 80, width: 80, paddingVertical: 20, borderRadius: 50, color: 'red', backgroundColor: '#E9E9E9'}} />
+                <View style={styles.parcourInfos}>
+                    <Text> Informations sur le parcour</Text>
+                    <View style={styles.pathwayItem}>
+                    <FontAwesome name="level-up" size={20} color="black" style={styles.icondDetails} />
                     <View style={styles.pathwayItemText}>
-                        <Text style={styles.pathwayItemText1}>Specialité</Text>
-                        <Text style={styles.pathwayItemText2}> {navigation.getParam('speciality')}</Text>
+                            <Text style={styles.pathwayItemText1}>Niveau</Text>
+                            <Text style={styles.pathwayItemText2}> {navigation.getParam('niveau')}</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.pathwayItem}>
-                <Foundation name="comment" size={24} color="black" style={{fontSize: 20, paddingHorizontal: 10, paddingVertical: 10, height: 50, width: 50, borderRadius: 50, color: 'red', backgroundColor: '#E9E9E9',}}  />
+                    <View style={styles.pathwayItem}>
+                    <MaterialIcons name="confirmation-number" size={24} color="black" style={styles.icondDetails} />
                     <View style={styles.pathwayItemText}>
-                        <Text style={styles.pathwayItemText1}>Commentaire</Text>
-                        <Text style={styles.pathwayItemText2}> {navigation.getParam('comment')}</Text>
+                            <Text style={styles.pathwayItemText1}>Salle</Text>
+                            <Text style={styles.pathwayItemText2}> {navigation.getParam('salle')}</Text>
+                        </View>
                     </View>
+                    <View style={styles.pathwayItem}>
+                        <MaterialIcons name="perm-data-setting" size={24} color="black" style={styles.icondDetails} />
+                        <View style={styles.pathwayItemText}>
+                            <Text style={styles.pathwayItemText1}>Specialité</Text>
+                            <Text style={styles.pathwayItemText2}> {navigation.getParam('speciality')}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.pathwayItem}>
+                        <Foundation name="comment" size={24} color="black" style={styles.icondDetails}  />
+                        <View style={styles.pathwayItemText}>
+                            <Text style={styles.pathwayItemText1}>Commentaire</Text>
+                            <Text style={styles.pathwayItemText2}> {navigation.getParam('comment')}</Text>
+                        </View>
+                    </View>
+
+                </View>
+
+
+
+                <View style={styles.parcourInfos}>
+                    <Text> Tous les etudiants ce parcour </Text>
+                   
                 </View>
             </View>
       </ScrollView>
@@ -130,21 +142,32 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.lightyellow,
         paddingVertical: 10,
-        paddingHorizontal: 10
+        paddingHorizontal: 5
     },
     contPathwayItem: {
-        
+        backgroundColor: '#F1F0EE',
         justifyContent: 'center',
+        padding: 16
     },
     pathwayItem : {
         flexDirection: 'row',
         paddingHorizontal: 20,
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 100,
+        height: 70,
         marginVertical: 5,
         
     },
+    icondDetails: {
+        fontSize: 15,
+         paddingHorizontal: 20,
+          height: 60, width: 60, 
+          paddingVertical: 20, 
+          borderRadius: 50, 
+          color: 'red', 
+          backgroundColor: '#E9E9E9'
+        },
+    
     pathwayItemText: {
         marginHorizontal: 50,
         paddingVertical: 10,

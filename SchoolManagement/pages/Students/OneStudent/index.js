@@ -136,19 +136,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.lightyellow
-
-
     },
     studentsbannier: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
         height: 180,
-        borderRadius: 10,
-        flexDirection: 'row',
-        backgroundColor: '#fff'
+        
     },
     image: {
-        width: '93%',
+        width: '100%',
         height: '100%',
         
     },
@@ -198,7 +192,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
-        height: 80,      
+        height: 60,      
         backgroundColor: '#fff',
     },
     studentsecondItemText2: {

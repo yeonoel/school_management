@@ -203,29 +203,29 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: .3,
     shadowRadius: 30,
-    padding: paddingItem
+    padding: 3
   },
   nameFirstChar: {
     backgroundColor: '#E9E9E9',
     width: 70,
-    height: imgHeight,
+    height: 50,
     borderRadius: 18,
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   nameChar: {
-    fontSize: 30,
+    fontSize: 20,
     color: 'red'
   },
   textname: {
-    fontSize: 20,
+    fontSize: 15,
     color: 'red',
   },
   textimp: {
     fontWeight: 'bold',
     flexWrap: 'wrap',
-    fontSize: 22,
+    fontSize: 15,
   }
 });
 
