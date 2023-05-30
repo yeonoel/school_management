@@ -4,7 +4,8 @@ export default colors = {
     primary2: "#dba95a", // Jaune
     secondary1: "#232724", 
     secondary2: "#e64537",
-    tertiary: "#35aa54",  // vert
+    tertiary: "#35aa54",  // vert,
+    cleangreen: '#FFD700'
 }
 
 // 

@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Alert } from 'react-native';
+import colors from '../../../colors';
 
 
-const EditPathway = ({navigation}) => {
-    
-    const [niveau, setNiveau] = useState(navigation.getParam('niveau'));
-    const [speciality, setSpeciality] = useState(navigation.getParam('specilaty'));
-    const [salle, setSalle] = useState(navigation.getParam('salle'));
-    const [comment, setComment] = useState(navigation.getParam('niveau'));
+const EditPathway = ({navigation, route}) => {
+    const myData = route.params;
+    const idPathway = route.params.id;
+    console.log(idPathway);
+    const [niveau, setNiveau] = useState(myData.niveau);
+    const [speciality, setSpeciality] = useState(myData.speciality);
+    const [salle, setSalle] = useState(myData.salle);
+    const [comment, setComment] = useState(myData.comment);
 
-    const idPathway = navigation.getParam('id');
 
     function capitalizeFirstLetter(name) {
         return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -120,24 +122,25 @@ const EditPathway = ({navigation}) => {
                         
 
                         <View style={styles.group_btn_add_student}>
+                        
+                        <TouchableOpacity
+                            style={styles.btn2}
+                            onPress={handleUpdate}
+                        >
+                            <Text
+                                style={styles.btn_text1}
+                            > 
+                                Valider 
+                            </Text>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.btn1}
                             color='#fff'
                             onPress={handleCancel}
                         >
                             <Text
-                            style={styles.btn_text}
+                            style={styles.btn_text2}
                             > Annuler </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={styles.btn2}
-                            onPress={handleUpdate}
-                        >
-                            <Text
-                                style={styles.btn_text}
-                            > 
-                                Valider 
-                            </Text>
                         </TouchableOpacity>
                         
                     </View>
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 60,
+        height: 50,
         borderWidth: 2,
         borderRadius: 10,
         borderColor: "#ccc",
@@ -191,8 +194,7 @@ const styles = StyleSheet.create({
 
 
     group_btn_add_student: {
-        marginTop: 30,
-        flexDirection: 'row',
+        marginTop: 20,
         justifyContent: 'space-around',
         
         borderRadius: 20,
@@ -201,29 +203,26 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 10,
         height: 40,
-        borderRadius: 50,
-        backgroundColor: '#e64537', // définit la couleur de fond du bouton en vert
-        color: '#fff' ,// définit la couleur du texte en blanc
+        borderRadius: 5,
+        color: 'red' ,// définit la couleur du texte en blanc
         alignItems: 'center'
     },
     btn2: {
         height: 40,
         paddingHorizontal: 30,
         paddingVertical: 10,
-        borderRadius: 50,
-        backgroundColor: '#00703C', // 
+        borderRadius: 5,
+        backgroundColor: colors.cleangreen, // 
         color: '#fff' // définit la couleur du texte en blanc
     },
-    btn_text: {
-        
-        color: '#fff'
+    btn_text1: {
+        textAlign: 'center',
+        color: '#000',
+        fontWeight: 'bold'
+    },
+    btn_text2: {
+        color: 'red'
     }
-
-
-
-
-
-
 
 })
 

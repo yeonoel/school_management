@@ -1,28 +1,27 @@
 
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Alert } from 'react-native';
 
 
-const EditStudent = ({navigation}) => {
+const EditStudent = ({navigation, route}) => {
     
+    const myData = route.params;
+
     const [classes, setClasses] = useState(["Prepa1", "Prepa2", "Prepa3", "Eng1", "Eng2", "Eng3"]);
-    const [nom, setNom] = useState(navigation.getParam('nom'));
-    const [matricule, setMatricule] = useState(navigation.getParam('matricule'));
-    const [prenom, setPrenom] = useState(navigation.getParam('prenom'));
-    const [moyenMath, setMoyenMath] = useState(navigation.getParam('moyenMath'));
-    const [moyenInfo, setMoyenInfo] = useState(navigation.getParam('moyenInfo'));
+    const [nom, setNom] = useState(myData.nom);
+    const [matricule, setMatricule] = useState(myData.matricule);
+    const [prenom, setPrenom] = useState(myData.prenom);
+    const [moyenMath, setMoyenMath] = useState(myData.moyenMath);
+    const [moyenInfo, setMoyenInfo] = useState(myData.moyenInfo);
     const [selectClass, setSelectedClass] = useState('');
 
-    const idStudent = navigation.getParam('id');
-
+    const idStudent = myData._id;
     function capitalizeFirstLetter(name) {
         return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     }
 
-    console.log(navigation.getParam('matricule'))
 
       function emptyField () {
         console.log('okay');
@@ -40,9 +39,9 @@ const EditStudent = ({navigation}) => {
     const handleUpdate = () => {
         // Créer un objet qui contient les nouvelles informations de l'étudiant
         const updatedStudent = {
-            nom: nom,
+            nom: capitalizeFirstLetter(nom),
             matricule: matricule,
-            prenom: prenom,
+            prenom: capitalizeFirstLetter(prenom),
             niveau: selectClass,
             moyenMath: moyenMath,
             moyenInfo: moyenInfo
@@ -91,7 +90,7 @@ const EditStudent = ({navigation}) => {
                 <View style={styles.studentText}>
                     <View style={styles.constinainerstudentsecondItem}>
                         <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Matricule   </Text>
+                            <Text style={styles.studentsecondItemText1}> Matricule:   </Text>
                             <TextInput
                                 style={styles.input}
                                 value={matricule}
@@ -110,7 +109,7 @@ const EditStudent = ({navigation}) => {
                             />
                         </View>
                         <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Prénom   </Text>
+                            <Text style={styles.studentsecondItemText1}> Prénom:  </Text>
                             <TextInput
                                 style={styles.input}
                                 value={prenom}
@@ -119,7 +118,7 @@ const EditStudent = ({navigation}) => {
                         </View>
                         
                         <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Moyen Mathematique </Text>
+                            <Text style={styles.studentsecondItemText1}> Moyen Mathematique: </Text>
                             <TextInput
                                 style={styles.input}
                                 value={moyenMath}
@@ -128,7 +127,7 @@ const EditStudent = ({navigation}) => {
                             />
                         </View>
                         <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Moyen Informatique   </Text>
+                            <Text style={styles.studentsecondItemText1}> Moyen Informatique:   </Text>
                             <TextInput
                                 style={styles.input}
                                 value={moyenInfo}
@@ -198,10 +197,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 55,
+        height: 53,
         borderWidth: 2,
         borderRadius: 10,
-        borderColor: "#ccc",
+        borderColor: "#000",
         marginTop: 10,
         paddingHorizontal: 10
         
@@ -241,12 +240,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 10,
         borderRadius: 5,
-        backgroundColor: '#00703C', // 
+        backgroundColor: '#FFD700', // 
         color: '#fff' // définit la couleur du texte en blanc
     },
     btn_text1: {
         textAlign: 'center',
-        color: '#fff',
+        color: '#000',
         fontWeight: 'bold'
     },
     btn_text2: {

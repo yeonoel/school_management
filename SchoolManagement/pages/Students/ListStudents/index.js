@@ -6,7 +6,7 @@ import MaterialIconHearder from '../../../component/MaterialIconHearder';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 const marginBottomItem = 20;
-const paddingItem = 10;
+const paddingItem = 30;
 const imgHeight = 70;
 const sizeOfItem = imgHeight + paddingItem * 2 + marginBottomItem;
 
@@ -79,8 +79,6 @@ const ListStudents = ({navigation}) => {
   return (
     <View style={styles.container}>
       
-      
-
       <View style={styles.wrapper}>
         <View style={styles.inputView}>
           <TextInput 
@@ -116,23 +114,23 @@ const ListStudents = ({navigation}) => {
 
 
 
-ListStudents.navigationOptions = ({navigation}) => {
+// ListStudents.navigationOptions = ({navigation}) => {
     
-  return {        
-  headerTitle: 'Liste des étudiants',
-  headerLeft: () => (
-      <HeaderButtons
-         HeaderButtonComponent={MaterialIconHearder}
-      >
-         <Item 
-              title='menu'
-              iconName='menu'
-              onPress={() => { navigation.toggleDrawer()}}
-          />
-      </HeaderButtons>
-  )
-}
-}
+//   return {        
+//   headerTitle: 'Liste des étudiants',
+//   headerLeft: () => (
+//       <HeaderButtons
+//          HeaderButtonComponent={MaterialIconHearder}
+//       >
+//          <Item 
+//               title='menu'
+//               iconName='menu'
+//               onPress={() => { navigation.toggleDrawer()}}
+//           />
+//       </HeaderButtons>
+//   )
+// }
+// }
 
 
 
@@ -147,7 +145,7 @@ const styles = StyleSheet.create({
     color: 'black' ,
     width: '99%',
     paddingLeft: 20,
-    height: 50,
+    height: 40,
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#ccc',

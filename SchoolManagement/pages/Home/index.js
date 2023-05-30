@@ -1,26 +1,25 @@
 
 import React from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {StyleSheet, View, Text, Button, Pressable} from 'react-native';
 import colors from '../../colors'
 import MaterialIconHearder from '../../component/MaterialIconHearder';
-import { DrawerActions } from 'react-navigation-drawer';
 
-import {
-    HeaderButtons,
-    HeaderButton,
-    Item,
-    HiddenItem,
-    OverflowMenu,
-  } from 'react-navigation-header-buttons';
+// import {
+//     HeaderButtons,
+//     HeaderButton,
+//     Item,
+//     HiddenItem,
+//     OverflowMenu,
+//   } from 'react-navigation-header-buttons';
 
 
 const Home = ({navigation}) => {
     
-    const HhandlePress = () => {
+    const HhandleListStudent = () => {
         navigation.navigate('ListStudents');
     }
 
-    const HhandlePressadd = () => {
+    const handleAddStudent = () => {
         navigation.navigate('AddStudents');
     }
 
@@ -31,66 +30,105 @@ const Home = ({navigation}) => {
     const handleListPathways = () => {
         navigation.navigate('ListPathways')
     }
+
+    const handleSingIn = () => {
+        navigation.navigate('SingIn');
+    }
+
+    const handleSingUp = () => {
+        navigation.navigate('SingUp');
+    }
  return (
     <View style={styles.container}>
         <Text style={styles.text}> Home</Text>
         <View style={styles.btn}>
-            <Button
-                title='Liste des etudiants'
-                onPress={HhandlePress}
-            />
+            
+            <Pressable
+                style={({pressed}) => ({ backgroundColor: pressed ? 'red': colors.lightyellow})}
+                onPress={HhandleListStudent}
+
+            >
+                <Text >Lister les etudiants</Text>
+            </Pressable>
 
             </View>
         <View style={styles.btn}>
             
+        <Pressable
+                style={({pressed}) => ({ backgroundColor: pressed ? 'red': ''})}
+                onPress={handleAddStudent}
 
-            <Button
-                
-                title='Ajouter un student'
-                onPress={HhandlePressadd}
-            />
+            >
+                <Text >Ajouter un etudiant</Text>
+            </Pressable>
+
+            
         </View>
 
         <View style={styles.btn}>
             
-
-            <Button
-                
-                title='Voir les parcours'
+            <Pressable
+                style={({pressed}) => ({ backgroundColor: pressed ? 'red': ''})}
                 onPress={handleListPathways}
-            />
+
+            >
+                <Text >Voir les parcours</Text>
+            </Pressable>
+
+            
         </View>
 
         <View style={styles.btn}>
-            
-
-            <Button
-                
-                title='Ajouter un parcour'
+        
+        
+        <Pressable
+                style={({pressed}) => ({ backgroundColor: pressed ? 'red': ''})}
                 onPress={handleAddPathway}
-            />
+
+        >
+                <Text>Ajouter un parcour</Text>
+        </Pressable>
+        </View>
+        <View style={styles.btn}>
+        <Pressable
+                style={({pressed}) => ({ backgroundColor: pressed ? 'red': ''})}
+                onPress={handleSingIn}
+
+        >
+                <Text>Connexion</Text>
+        </Pressable>
+
+        </View>
+        <View style={styles.btn}>            
+            <Pressable
+                    style={({pressed}) => ({ backgroundColor: pressed ? 'red': ''})}
+                    onPress={handleSingUp}
+            >
+                    <Text>Inscription</Text>
+            </Pressable>
+
         </View>
     </View>
 
 )
 }
-Home.navigationOptions = ({navigation}) => {
+// Home.navigationOptions = ({navigation}) => {
     
-    return {        
-    headerTitle: 'Accueil',
-    headerLeft: () => (
-        <HeaderButtons
-           HeaderButtonComponent={MaterialIconHearder}
-        >
-           <Item 
-                title='menu'
-                iconName='menu'
-                onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer())}}
-            />
-        </HeaderButtons>
-    )
-    }
-}
+//     return {        
+//     headerTitle: 'Accueil',
+//     headerLeft: () => (
+//         <HeaderButtons
+//            HeaderButtonComponent={MaterialIconHearder}
+//         >
+//            <Item 
+//                 title='menu'
+//                 iconName='menu'
+//                 onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer())}}
+//             />
+//         </HeaderButtons>
+//     )
+//     }
+// }
 
 const styles = StyleSheet.create({ 
      container: {

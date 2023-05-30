@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react';
-import {StyleSheet, View, Text, Image, Button, TouchableOpacity} from 'react-native';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import {StyleSheet, ScrollView, View, Text, Image, ActivityIndicator, Alert} from 'react-native';
 import colors from '../../../colors';
-import { ScrollView } from 'react-native-gesture-handler';
 import MaterialIconHearder from '../../../component/MaterialIconHearder';
 import {
     HeaderButtons,
@@ -11,73 +10,40 @@ import {
     HiddenItem,
     OverflowMenu,
   } from 'react-navigation-header-buttons';
-import { Alert } from 'react-native';
 
 
-const OneStudent = ({navigation}) => {
+const OneStudent = ({navigation, route}) => {
     
-    function capitalizeFirstLetter(name) {
-        return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-      }
-  
-  
- return (
-    <View style={styles.container}>
-        <View style={styles.studentsbannier}>
-            <Image
-                style={styles.image}
-                source={require('../../../assets/onestudentimg.png')}
-            />
-      
-        </View>
-        <View style={styles.studentName}>
-                    <Text style={styles.studentNameText}> {capitalizeFirstLetter(navigation.getParam('nom'))} {capitalizeFirstLetter(navigation.getParam('prenom'))}  </Text>
-        </View>
-        <ScrollView>
-            <View style={styles.studentText}>
-               
-                <View style={styles.constinainerstudentsecondItem}>
-                    <View style={styles.studentsecondItem}>
-                        <Text style={styles.studentsecondItemText1}> Matricule   </Text>
-                        <Text style={styles.studentsecondItemText2}>{navigation.getParam('matricule')}</Text>
-                    </View>
-                    <View style={styles.studentsecondItem}>
-                        <Text style={styles.studentsecondItemText1}> Niveau  </Text>
-                        <Text style={styles.studentsecondItemText2}> {navigation.getParam('niveau')}</Text>
-                    </View>
-                    <View style={styles.studentsecondItem}>
-                        <Text style={styles.studentsecondItemText1}> Moyen Mathematique </Text>
-                        <Text style={styles.studentsecondItemText2}> {navigation.getParam('moyenMath')} </Text>
-                    </View>
-                    <View style={styles.studentsecondItem}>
-                        <Text style={styles.studentsecondItemText1}> Moyen Informatique   </Text>
-                        <Text style={styles.studentsecondItemText2}> {navigation.getParam('moyenInfo')} </Text>
-                    </View>
-                    
-                </View>
-            </View>
-            
-        </ScrollView>
-            
-        
-    </View>
- )   
-}
+    const [data, setData] = useState([]);
+    const [isLoding, setIsLoading] = useState(false);
+    
 
-OneStudent.navigationOptions = (navigateDate) => {
-    const nom = navigateDate.navigation.getParam('nom');
-    const id = navigateDate.navigation.getParam('_id');
+    function capitalizeFirstLetter(name) {
+        if (name) {
+            return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        }
+        return '';
+    }
+  
+  const myData = route.params;
+  
+  const id = myData._id
+  console.log('ddddddd:' + myData._id)
+
+  useLayoutEffect(() => {
+    const id = myData._id
+
     const url = `http://10.0.2.2:8080/api/students/${id}`
    
-    const fetchData = () => {
+    const fetchDataToDelete = () => {
         fetch(url, {
             method: 'DELETE'
             })
             .then(response => {
             if (response.status === 200) {
                 console.log('Element supprimé avec succès');
-                alert(`${nom } a été supprimé avec success`);
-                navigateDate.navigation.navigate('Home');
+                alert(`${myData.nom } a été supprimé avec success`);
+                navigation.navigate('Home');
                 
             } else {
                 console.log('Une erreur s\'est produite lors de la suppression de l\'élément');
@@ -87,49 +53,155 @@ OneStudent.navigationOptions = (navigateDate) => {
             console.log('Une erreur s\'est produite lors de la suppression de l\'élément : ' + error.message);
             });
     }
-    
-    return {
-        headerTitle: `Details sur ${nom}`,
-    headerRight: () => (
-        <HeaderButtons
-            HeaderButtonComponent={MaterialIconHearder}
-        >
-            <Item 
-                title='edit'
-                iconName='edit'
+
+
+
+    navigation.setOptions({
+
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={MaterialIconHearder}>
+                <Item 
+                    title='edit'
+                    iconName='edit'
+                    onPress={() => {
+                        navigation.navigate('EditStudent', myData)
+                    }}
+                />
+              <Item
+                title="Supprimer"
+                iconName="delete"
                 onPress={() => {
+                        Alert.alert('Attention!', 'Vous allez supprimer definitivement un(e) etudiant(e) de la Base de donnée. Etes vous sure de continuer?', [
+                        {
+                          text: 'Annuler',
+                          onPress: () => {console.log('Cancel Pressed')},
+                          style: 'cancel',
+                        },
+                        {text: 'Oui', onPress: () => 
+                        fetchDataToDelete()
+                        
+                        },
+                      ]) 
                     
-                    navigateDate.navigation.navigate('EditStudent', {
-                        id: id,
-                        nom: nom,
-                        prenom: navigateDate.navigation.getParam('prenom'),
-                        matricule: navigateDate.navigation.getParam('matricule'),
-                        niveau: navigateDate.navigation.getParam('niveau'),
-                        moyenMath: navigateDate.navigation.getParam('moyenMath'),
-                        moyenInfo: navigateDate.navigation.getParam('moyenInfo')
-                    })
                 }}
-            />
-            <Item 
-                title='delete'
-                iconName='delete'
-                onPress={() =>
-                    Alert.alert('Attention!', 'Vous allez supprimer definitivement un(e) etudiant(e) de la Base de donnée. Etes vous sure de continuer?', [
-                    {
-                      text: 'Annuler',
-                      onPress: () => {console.log('Cancel Pressed')},
-                      style: 'cancel',
-                    },
-                    {text: 'Oui', onPress: () => fetchData()},
-                  ]) 
-                }
-               
-            />
-        </HeaderButtons>
-    )
+              />
+              
+            </HeaderButtons>
+            
+          )
+    })
+  }, [navigation])
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchData();
+    return () => {
+
     }
-    
+  }, []);
+
+
+
+   function fetchData() {
+    console.log('eeeeeeee')
+    const url = `http://10.0.2.2:8080/api/students/${id}`
+    console.log('ggggggggggg')
+
+    fetch(url)
+    .then((response) => response.json())
+    .then((resJson) => {
+        console.log(resJson)
+        setData(resJson)
+        console.log(data)
+
+    })
+    .catch(console.error())
+    .finally(() => setIsLoading(false));
+
+  }
+
+ 
+ return (
+    <View style={styles.container}>
+        <View style={styles.studentsbannier}>
+            <Image
+                style={styles.image}
+                source={require('../../../assets/onestudentimg.png')}
+            />
+      
+        </View>
+        {
+            isLoding ? <ActivityIndicator /> : (
+
+
+                <View>
+                    <View style={styles.studentName}>
+                    <Text style={styles.studentNameText}> {capitalizeFirstLetter(data.nom) } {capitalizeFirstLetter(data.prenom)} </Text>
+                </View>
+        <ScrollView>
+            <View style={styles.studentText}>
+               
+                <View style={styles.constinainerstudentsecondItem}>
+                    <View style={styles.studentsecondItem}>
+                        <Text style={styles.studentsecondItemText1}> Matricule:   </Text>
+                        <Text style={styles.studentsecondItemText2}>{data.matricule}</Text>
+                    </View>
+                    <View style={styles.studentsecondItem}>
+                        <Text style={styles.studentsecondItemText1}> Niveau:  </Text>
+                        <Text style={styles.studentsecondItemText2}> {data.niveau}</Text>
+                    </View>
+                    <View style={styles.studentsecondItem}>
+                        <Text style={styles.studentsecondItemText1}> Moyen Mathematique: </Text>
+                        <Text style={styles.studentsecondItemText2}> {data.moyenMath} </Text>
+                    </View>
+                    <View style={styles.studentsecondItem}>
+                        <Text style={styles.studentsecondItemText1}> Moyen Informatique:   </Text>
+                        <Text style={styles.studentsecondItemText2}> {data.moyenInfo} </Text>
+                    </View>
+                    
+                </View>
+            </View>
+            
+        </ScrollView>
+                </View>
+
+
+
+
+
+
+
+
+
+            )
+        }
+            
+        
+    </View>
+ )   
 }
+
+// OneStudent.navigationOptions = (navigateDate) => {
+//     const nom = navigateDate.navigation.getParam('nom');
+//     const id = navigateDate.navigation.getParam('_id');
+
+    
+//     return {
+//         headerTitle: `Details sur ${nom}`,
+    
+//                 }}
+//             />
+//             <Item 
+//                 title='delete'
+//                 iconName='delete'
+                
+               
+//             />
+//         </HeaderButtons>
+//     )
+//     }
+    
+// }
 
 
 const styles = StyleSheet.create({

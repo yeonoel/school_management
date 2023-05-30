@@ -88,23 +88,23 @@ const ListPathways = ({navigation}) => {
 
 
 
-  ListPathways.navigationOptions = ({navigation}) => {
+  // ListPathways.navigationOptions = ({navigation}) => {
     
-    return {        
-    headerTitle: 'Liste des étudiants',
-    headerLeft: () => (
-        <HeaderButtons
-           HeaderButtonComponent={MaterialIconHearder}
-        >
-           <Item 
-                title='menu'
-                iconName='menu'
-                onPress={() => { navigation.toggleDrawer()}}
-            />
-        </HeaderButtons>
-    )
-  }
-  }
+  //   return {        
+  //   headerTitle: 'Liste des étudiants',
+  //   headerLeft: () => (
+  //       <HeaderButtons
+  //          HeaderButtonComponent={MaterialIconHearder}
+  //       >
+  //          <Item 
+  //               title='menu'
+  //               iconName='menu'
+  //               onPress={() => { navigation.toggleDrawer()}}
+  //           />
+  //       </HeaderButtons>
+  //   )
+  // }
+  // }
 
 
 

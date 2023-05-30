@@ -12,7 +12,11 @@ const AddStudents = () => {
     const [nom, setNom] = useState('');
     const [moyMath, setMoyMath] = useState('')
     const [moyInfo, setMoyInfo] = useState('')
-    const [matricule, setMatricule] = useState('')
+    const [matricule, setMatricule] = useState('');
+
+    function capitalizeFirstLetter(name) {
+        return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    }
    
 
     function emptyField () {
@@ -33,8 +37,8 @@ const AddStudents = () => {
 
      const student = {
          matricule: matricule,
-         nom: nom,
-         prenom: prenom,
+         nom: capitalizeFirstLetter(nom),
+         prenom: capitalizeFirstLetter(prenom),
          moyenInfo: moyInfo,
          moyenMath: moyMath,
          niveau: selectClass
