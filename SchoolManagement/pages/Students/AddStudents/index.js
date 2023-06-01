@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {Picker} from "@react-native-picker/picker";
 import {Alert, View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import colors from '../../../colors';
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 
 
 const AddStudents = () => {
@@ -127,28 +129,68 @@ const AddStudents = () => {
         <View style={styles.container}>
             
             <View style={styles.container_add_students}> 
+                <Text style={styles.AddStudentTitle}> Ajouter un(e) étudiant(e) </Text>
+
                 
                <ScrollView>
 
                <View style={styles.form}>
-                    <TextInput 
+
+                <View style={styles.inputContent}>
+                <MaterialIcons name="confirmation-number" size={24} color="black" />
+                <TextInput 
                         style={styles.input}
                         placeholder="Matricule"
                         value={matricule}
                         onChangeText={setMatricule}
                     />
-                    <TextInput
+
+                </View>
+                <View style={styles.inputContent}>
+                <MaterialIcons name="person" size={24} color="black" />
+                <TextInput
                         style={styles.input}
                         placeholder="nom"
                         value={nom}
                         onChangeText={setNom}
                     />
-                    <TextInput
+
+                </View>
+                <View style={styles.inputContent}>
+                <MaterialIcons name="person" size={24} color="black" />
+                 <TextInput
                         style={styles.input}
                         placeholder="prenom"
                         value={prenom}
                         onChangeText={setPrenom}
                     />
+
+                </View>
+                <View style={styles.inputContent}>
+                <MaterialIcons name="assessment" size={24} color="black" />
+                <TextInput 
+                        style={styles.input}
+                        placeholder="Moyenne Math"
+                        value={moyMath}
+                        onChangeText={setMoyMath}
+                        keyboardType='numeric'
+                    />
+
+                </View>
+                <View style={styles.inputContent}>
+                <MaterialIcons name="assessment" size={24} color="black" />
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Moyenne Infor"
+                        value={moyInfo}
+                        onChangeText={setMoyInfo}
+                        keyboardType='numeric'
+                    />
+
+                </View>
+                    
+                    
+                   
                     <View>
                         <Picker
                             selectedValue={selectClass}
@@ -162,26 +204,9 @@ const AddStudents = () => {
                             }
                         </Picker>
                     </View>
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="Moyenne Math"
-                        value={moyMath}
-                        onChangeText={setMoyMath}
-                        keyboardType='numeric'
-                    />
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="Moyenne Infor"
-                        value={moyInfo}
-                        onChangeText={setMoyInfo}
-                        keyboardType='numeric'
-                    />
-
-                    
-                    <View style={styles.photoStudent}>                        
-                            
-                            
-                    </View>
+                
+                
+                   
                             
                     <View style={styles.group_btn_add_student}>
                         <TouchableOpacity
@@ -220,7 +245,6 @@ const AddStudents = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow
     },
     title_add_student: {
         padding: 10,
@@ -228,14 +252,23 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 20,
     },
+    AddStudentTitle: {
+        marginVertical: 1,
+        paddingVertical: 20, 
+        color: '#000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        borderBottomWidth: 0.5,
+    },
     container_add_students: {
-        backgroundColor: colors.lightyellow,
+        marginHorizontal: 10,
+        marginVertical: 10,
+        backgroundColor: '#fff',
         height: '100%',
         paddingLeft: 20,
         paddingRight: 20,
         justifyContent: 'center',
         paddingHorizontal: 15,
-        paddingVertical: 10,
         borderRadius: 8,
         padding: 16,
         elevation: 5,
@@ -253,7 +286,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         backgroundColor: '#fff',
         borderRadius: 8,
-        padding: 16,
         elevation: 3,
         shadowColor: '#000',
         shadowOffset: {
@@ -261,15 +293,18 @@ const styles = StyleSheet.create({
         height: 3,
         },
     },
-    input: {
+    inputContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
         height: 40,
-        marginTop: 30,
-        paddingLeft: 20,
-        fontSize: 15,
-        borderBottomColor: '#000',
+        marginTop: 20,
         borderBottomWidth: 1,
-        borderColor: 'transparent',
-        borderWidth: 0,
+        borderBottomColor: colors.cleangreen
+    },
+    input: {
+        paddingLeft: 20,
+        width: '90%',
+        fontSize: 15,
         
     },
     photoStudent: {
@@ -294,6 +329,7 @@ const styles = StyleSheet.create({
         
     },
     group_btn_add_student: {
+        paddingVertical: 10,
         marginTop: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',

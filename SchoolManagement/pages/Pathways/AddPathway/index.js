@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {Alert, View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import colors from '../../../colors';
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 
 
 const AddPathway = () => {
@@ -112,23 +114,34 @@ const AddPathway = () => {
         <View style={styles.container}>
             
             <View style={styles.container_add_students}> 
+                <Text style={styles.AddStudentTitle}> Ajouter un parcour </Text>
                 
                <ScrollView>
 
                <View style={styles.form}>
+
+                    <View style={styles.inputContent}>
+                    <MaterialIcons name="cast-for-education" size={24} color="black" />
                     <TextInput 
                         style={styles.input}
                         placeholder="niveau"
                         value={niveau}
                         onChangeText={setNiveau}
+                        
                     />
+                    </View>
+                    <View style={styles.inputContent}>
+                    <MaterialIcons name="grade" size={24} color="black" />
                     <TextInput 
                         style={styles.input}
                         placeholder="specialité"
                         value={speciality}
                         onChangeText={setSpeciality}
                     />
-                    
+                    </View>
+                   
+                    <View style={styles.inputContent}>
+                    <MaterialIcons name="confirmation-number" size={24} color="black" />
                     <TextInput 
                         style={styles.input}
                         placeholder="Le numero de salle de classe"
@@ -136,13 +149,19 @@ const AddPathway = () => {
                         onChangeText={setSalle}
                         keyboardType='numeric'
                     />
-
+                    </View>
+                    <View style={styles.inputContent}>
+                    <MaterialIcons name="add-comment" size={24} color="black" />
                     <TextInput
                         style={styles.input}
                         placeholder="Commentaire"
                         value={comment}
                         onChangeText={setComent}
                     />
+                    </View>
+                    
+
+                    
                     
                     <View style={styles.photoStudent}>                        
                             
@@ -186,7 +205,7 @@ const AddPathway = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow
+        backgroundColor: colors.test
     },
     title_add_student: {
         padding: 10,
@@ -194,14 +213,25 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 20,
     },
+    AddStudentTitle: {
+        marginVertical: 20,
+        paddingVertical: 20, 
+        color: '#000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        borderBottomWidth: 0.5,
+        borderBottomEndRadius: '#ccc'
+    },
     container_add_students: {
-        backgroundColor: colors.lightyellow,
+        backgroundColor: '#fff',
+        marginHorizontal: 10,
+        marginVertical: 10,
         height: '100%',
-        paddingLeft: 40,
-        paddingRight: 40,
+        paddingLeft: 20,
+        paddingRight: 20,
         justifyContent: 'center',
         paddingHorizontal: 15,
-        paddingVertical: 10,
+        paddingVertical: 5,
         borderRadius: 8,
         elevation: 5,
         shadowColor: '#000',
@@ -214,9 +244,8 @@ const styles = StyleSheet.create({
     },
     form: {
         backgroundColor: '#fff',
-        marginTop: 50,
         paddingHorizontal: 20,
-        paddingVertical: 50,
+        paddingVertical: 20,
         justifyContent: 'center',
         backgroundColor: '#fff',
         borderRadius: 8,
@@ -228,16 +257,18 @@ const styles = StyleSheet.create({
         height: 3,
         },
     },
-    input: {
-        
+    inputContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
         height: 40,
         marginTop: 30,
-        paddingLeft: 20,
-        fontSize: 15,
-        borderBottomColor: '#000',
         borderBottomWidth: 1,
-        borderColor: 'transparent',
-        borderWidth: 0,
+        borderBottomColor: colors.cleangreen
+    },
+    input: {
+        paddingLeft: 20,
+        width: '90%',
+        fontSize: 15,
         
     },
     photoStudent: {

@@ -5,7 +5,8 @@ export default colors = {
     secondary1: "#232724", 
     secondary2: "#e64537",
     tertiary: "#35aa54",  // vert,
-    cleangreen: '#FFD700'
+    cleangreen: '#FFD700',
+    test: '#DAD7D7',
 }
 
 // 

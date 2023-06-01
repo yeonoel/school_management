@@ -137,7 +137,7 @@ const ListStudents = ({navigation}) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: colors.lightyellow,
+    backgroundColor: colors.test,
     paddingTop: 5
   },
   search : {

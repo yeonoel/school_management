@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons' ;
 import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 
+
 import MaterialIconHearder from '../../../component/MaterialIconHearder';
 import {
     HeaderButtons,
@@ -136,10 +137,10 @@ const OnePathway = ({navigation, route}) => {
             <ScrollView>
             <View style={styles.contPathwayItem}>
                 <View style={styles.parcourInfos}>
-                    <Text> Informations sur le parcour</Text>
+                    <Text style={styles.parcourInfosTitle} > Détails parcour {data.niveau}</Text>
                     <View style={styles.pathwayItem}>
-                    <FontAwesome name="level-up" size={20} color="black" style={styles.icondDetails} />
-                    <View style={styles.pathwayItemText}>
+                    <MaterialIcons name="cast-for-education" size={24} color="black" style={styles.icondDetails} />
+                        <View style={styles.pathwayItemText}>
                             <Text style={styles.pathwayItemText1}>Niveau</Text>
                             <Text style={styles.pathwayItemText2}> {data.niveau}</Text>
                         </View>
@@ -171,7 +172,7 @@ const OnePathway = ({navigation, route}) => {
 
 
                 <View style={styles.parcourInfos}>
-                    <Text> Tous les etudiants ce parcour </Text>
+                    <Text style={styles.parcourInfosTitle}> Tous les etudiants de {data.niveau} </Text>
                    
                 </View>
             </View>
@@ -187,33 +188,47 @@ const OnePathway = ({navigation, route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow,
+        backgroundColor: colors.test,
         paddingVertical: 10,
         paddingHorizontal: 5
     },
     contPathwayItem: {
-        backgroundColor: '#F1F0EE',
         justifyContent: 'center',
-        padding: 16
+        padding: 5
     },
     pathwayItem : {
         flexDirection: 'row',
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: 70,
-        marginVertical: 5,
-        
+        height: 90, 
+        borderBottomWidth: 0.8,
+        borderBottomColor: '#ccc'       
+    },
+    parcourInfos: {
+        backgroundColor: '#fff',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 20
+    },
+    parcourInfosTitle: {
+        marginVertical: 20,
+        paddingVertical: 20, 
+
+        color: '#000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        borderBottomWidth: 0.5,
+        borderBottomEndRadius: '#ccc'
     },
     icondDetails: {
-        fontSize: 15,
          paddingHorizontal: 20,
           height: 60, width: 60, 
           paddingVertical: 20, 
           borderRadius: 50, 
-          color: 'red', 
-          backgroundColor: '#E9E9E9'
-        },
+          color: '#000', 
+          backgroundColor: colors.cleangreen
+    },
     
     pathwayItemText: {
         marginHorizontal: 50,

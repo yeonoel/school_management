@@ -36,6 +36,9 @@ const EditStudent = ({navigation, route}) => {
     const handleCancel = () => {
         emptyField();
     }
+    navigation.setOptions({
+        headerTitle: `Modifier les infos de ${myData.nom}`
+    })
     const handleUpdate = () => {
         // Créer un objet qui contient les nouvelles informations de l'étudiant
         const updatedStudent = {
@@ -186,7 +189,7 @@ const EditStudent = ({navigation, route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow
+        backgroundColor: '#EDECEC'
     },
     constinainerstudentsecondItem: {
         paddingHorizontal: 20,

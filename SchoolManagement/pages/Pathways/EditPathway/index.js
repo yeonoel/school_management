@@ -31,6 +31,10 @@ const EditPathway = ({navigation, route}) => {
     const handleCancel = () => {
         emptyField();
     }
+
+    navigation.setOptions({
+        headerTitle: `Modifier le ${myData.niveau}`
+    })
     const handleUpdate = () => {
         // Créer un objet qui contient les nouvelles informations de l'étudiant
         const updatedPathway = {
@@ -111,11 +115,10 @@ const EditPathway = ({navigation, route}) => {
                             />
                         </View>
                         <View style={styles.studentsecondItem}>
-                            <Text style={styles.studentsecondItemText1}> Comment:   </Text>
+                            <Text style={styles.studentsecondItemText1}> Commentaire:   </Text>
                             <TextInput
                                 style={styles.input}
                                 value={comment}
-                                
                                 onChangeText={text => setComment(text)}
                             />
                         </View>
@@ -158,12 +161,12 @@ const EditPathway = ({navigation, route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow
+        backgroundColor: '#EDECEC',
     },
     constinainerstudentsecondItem: {
         paddingHorizontal: 20,
         paddingVertical: 20,
-        marginTop: 30
+        marginTop: 70
     },
     studentsecondItem: {
         flexDirection: 'row',
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderWidth: 2,
         borderRadius: 10,
-        borderColor: "#ccc",
+        borderColor: "#000",
         marginTop: 10,
         paddingHorizontal: 10
         

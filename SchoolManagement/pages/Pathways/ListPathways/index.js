@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
-    backgroundColor: colors.lightyellow,
+    backgroundColor: colors.test,
   },
   pathway_contain: {
     flex: 1,

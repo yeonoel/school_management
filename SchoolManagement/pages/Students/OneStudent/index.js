@@ -57,7 +57,7 @@ const OneStudent = ({navigation, route}) => {
 
 
     navigation.setOptions({
-
+        headerTitle: `Profile de  ${myData.nom}`,
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={MaterialIconHearder}>
                 <Item 
@@ -207,11 +207,12 @@ const OneStudent = ({navigation, route}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.lightyellow
+        backgroundColor: colors.test
     },
     studentsbannier: {
-        height: 180,
-        
+        height: 220,
+        borderBottomWidth: 1,
+        borderBottomColor: '#fff'
     },
     image: {
         width: '100%',
